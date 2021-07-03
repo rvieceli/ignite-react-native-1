@@ -1,31 +1,38 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 
-export function Header() {
+import { ThemeButton } from "./ThemeButton";
+
+import { Theme } from "../styles/colors";
+
+interface Props {
+  onPress: () => void;
+  theme: Theme;
+}
+
+export function Header({ theme, onPress }: Props) {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ backgroundColor: theme.background }}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>to.</Text>
-        <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
+        <Text style={[styles.headerText, { color: theme.white }]}>
+          <Text>to.</Text>
+          <Text style={{ fontFamily: "Poppins-SemiBold" }}>do</Text>
+        </Text>
       </View>
+      <ThemeButton onPress={onPress} />
     </SafeAreaView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#273FAD',
-  },
   header: {
     paddingBottom: 44,
-    backgroundColor: '#273FAD',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
   headerText: {
     fontSize: 24,
-    color: '#FFF',
-    fontFamily: 'Poppins-Regular',
-  }
+    fontFamily: "Poppins-Regular",
+  },
 });
